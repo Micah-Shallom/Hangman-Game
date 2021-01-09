@@ -9,7 +9,7 @@ gender = input('Enter gender (M/F): ')
 time.sleep(2)
 
 if gender.upper() == 'M':
-    print(f"Hello {name}!🧑. Best of luck ")
+    print(f"Hello {name}!🧑.Best of luck")
 elif gender.upper() == 'F':
     print(f"Hello {name}!👩‍🦰. Best of luck ")
 else:
@@ -43,14 +43,8 @@ def gameinterface():
     global word_display
     
     game_limit = 5
-    # global words_to_guess
-    # global word
-    # global word_display
-    # global word_length
-    # global game_count
     
     print(word)
-    
     
     while game_limit != game_count:
         user_guess =  input('Please guess a letter in the word :  ')
@@ -64,14 +58,18 @@ def gameinterface():
                 
                 found_word_index = word.find(user_guess)
                 
-                word_display = f"{'_' * len(word[: found_word_index])}{word[found_word_index]}{'_' * len(word[found_word_index + 1 :])}"
+                word_display = f"{word_display[:found_word_index]}{word[found_word_index]}{word_display[found_word_index+1 : ]}"
+                
                 
                 word = f"{word[:found_word_index]}_{word[found_word_index + 1 : ]}"
                 
                 
+                
                 print(word)
                 print(word_display)
+                print(already_guessed_word)
             else:
+                print('Incorrect Letter😣. Please try another letter!👍')
                 game_count += 1
             
         elif len(user_guess.strip()) != 1:
@@ -84,6 +82,7 @@ def gameinterface():
         print('Game over')
         playloop()
     
+   
             
         
     
@@ -103,6 +102,7 @@ def playloop():
         time.sleep(1)
         print('Iniitializing game.............')
         time.sleep(1)
+        mainInterface()
         gameinterface()
     elif play_choice in ['n' , 'N'] :
         print('Thank you for playing the hangman game!!!. Try it again sometime soon.')
@@ -113,5 +113,6 @@ def playloop():
 mainInterface()
 
 gameinterface()
+
 
 
